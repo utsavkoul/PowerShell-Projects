@@ -12,7 +12,7 @@ $SpecificProcess | ForEach-Object {$PSMain = $PSItem; $PSMain | Select-Object @{
 while ($ChildProcess) {
     $ProcessID = ''
     $Process = $Processes | Where-Object {$PSItem.ProcessId -eq $ProcessID} | Select-Object @{Name='ProcessId'; Expression={$PSItem.ProcessId}}, @{Name='ProcessName'; Expression={$PSItem.ProcessName}}, @{Name='ParentProcessID'; Expression={$PSItem.ParentProcessId}}, @{Name='ParentProcessID'; Expression={$PSItem}}
-    $ChildProcess = $Process | Where-Object {$PSItem.ProcessId -eq $ProcessID} | Select-Object ParentProcessId -OutVariable $ParentProcessID | Select-Object @{Name='ProcessId'; Expression={$PSItem.ProcessId}}, @{Name='ProcessName'; Expression={$PSItem.ProcessName}}, @{Name='ParentProcessID'; Expression={$PSItem.ParentProcessId}}, @{Name='ParentProcessID'; Expression={$PSItem}}
+    $ChildProcess = $Process | Where-Object {$PSItem.ProcessId -eq $ProcessID} | Select-Object ProcessId -OutVariable $ParentProcessID | Select-Object @{Name='ProcessId'; Expression={$PSItem.ProcessId}}, @{Name='ProcessName'; Expression={$PSItem.ProcessName}}, @{Name='ParentProcessID'; Expression={$PSItem.ParentProcessId}}, @{Name='ParentProcessID'; Expression={$PSItem}}
     $ParentProcess = $Process | Where-Object {$PSItem.ProcessId -like $ParentProcessID} | Write-Host "$PSItem.Name"
     
 }
